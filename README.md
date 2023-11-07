@@ -73,7 +73,7 @@ The singular focus of this state is to avoid becoming prey. The fish engages in 
 - **Predator No Longer a Threat:** Once the fish has successfully evaded the predator, or the predator leaves the danger radius, the fish can transition back to the foraging or breeding states depending on its energy needs and environmental conditions.
 
 
-Agent Invading Fish
+## Agent 2: invading Fish
 
 ### Description
 The invading fish spawn randomly at positions outside of the player's camera view but close to the fish farm. Their objective is to invade the fish farm and catch the player's fish, introducing an element of risk and challenge in managing the farm.
@@ -114,6 +114,16 @@ When threatened by the player's right click, the invading fish will attempt to f
 #### State Transitions
 - **Threat Detected:** If the player attempts to catch the invading fish and fails, the fish will enter this state to escape.
 - **Safe Zone Reached:** Once the invading fish feels it has escaped the threat, it may transition back to the hunting state if it is far enough away from the player.
+
+  
+## Make it Your Own
+  
+Plan to make all the asset by myself
+
+- _List out what you added to your game to make it different for you_
+- _If you will add more agents or states make sure to list here and add it to the documention above_
+- _If you will add your own assets make sure to list it here and add it to the Sources section
+
 
 ## Known Issues
 
