@@ -32,17 +32,15 @@ public class TankControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //get the current distance from the camera to the tank
-        offsetOfTankAndCamera = turret.transform.position - Camera.main.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        TankHullMove();
-        TankHullRotate();
-        TurretRotation();
-        CameraFallowTankMoveAndRotate();
+        //TankHullMove();
+        //TankHullRotate();
+        //TurretRotation();
+        //CameraFallowTankMoveAndRotate();
     }
 
     /// <summary>
@@ -66,7 +64,7 @@ public class TankControl : MonoBehaviour
     /// </summary>
     public void TurretRotation()
     {
-        turret.transform.Rotate(Vector3.up, turretX * turretRotateSpeed * Time.deltaTime);
+        //turret.transform.Rotate(Vector3.up, turretX * turretRotateSpeed * Time.deltaTime);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
