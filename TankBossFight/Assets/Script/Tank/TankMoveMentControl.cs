@@ -37,10 +37,10 @@ public class TankControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TankHullMove();
-        //TankHullRotate();
-        //TurretRotation();
-        //CameraFallowTankMoveAndRotate();
+        TankHullMove();
+        TankHullRotate();
+        TurretRotation();
+        CameraFallowTankMoveAndRotate();
     }
 
     /// <summary>
