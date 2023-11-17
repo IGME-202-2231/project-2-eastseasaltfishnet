@@ -2815,8 +2815,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e566dd53bf1e744b1a6149dbc700d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hullPower: 5
-  hullRotateSpeed: 50
+  hullPower: 20
+  hullRotateSpeed: 70
   turretRotateSpeed: 5
   turret: {fileID: 2293365943422726987}
 --- !u!114 &8926075480294437670

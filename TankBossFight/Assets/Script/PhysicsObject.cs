@@ -14,6 +14,7 @@ public class PhysicsObject : MonoBehaviour
     public float topSpeed;
 
     public bool useGravity;
+    public bool useFriction;
 
     
     
@@ -31,16 +32,18 @@ public class PhysicsObject : MonoBehaviour
             ApplyGravity();
         }
 
-
-     //   // 修改这里，检查速度是否不为零
-     //   if (velocity.magnitude > 0.01f)
-     //   {
-     //       ApplyFriction(CoefficientOfFriction);
-     //   }
-     //   //if the object is not moving yet it will call Start moving in the tank control
+        if (useFriction)
+        {
+            // 修改这里，检查速度是否不为零
+            if (velocity.magnitude > 0.01f)
+            {
+                ApplyFriction(CoefficientOfFriction);
+            }
+            //if the object is not moving yet it will call Start moving in the tank control
+        }
         
         ApplyVelocity();
-        CheckTopSpeed();
+        //CheckTopSpeed();
     }
 
     public void ApplyGravity()
@@ -82,18 +85,19 @@ public class PhysicsObject : MonoBehaviour
 
     public void ApplyVelocity()
     {
-        // Calculate the velocity for this frame - New
+        // 更新速度
         velocity += acceleration * Time.deltaTime;
+        // 限制速度以避免过快
+        velocity = Vector3.ClampMagnitude(velocity, topSpeed);
 
+        // 更新位置
         position += velocity * Time.deltaTime;
 
-
-        if (velocity.magnitude > Mathf.Epsilon)
-        {
-            direction = velocity.normalized;
-        }
-
+        // 更新对象的Transform位置
         transform.position = position;
+
+        // 清除加速度以便下一帧计算新的转向力
+        acceleration = Vector3.zero;
 
 
     }

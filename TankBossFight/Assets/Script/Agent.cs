@@ -24,7 +24,7 @@ public abstract class Agent : MonoBehaviour
 
     protected abstract void CalcSteeringForces();
 
-    protected void MissileSeek(Vector3 targetPos, float weight)
+    protected Vector3 MissileSeek(Vector3 targetPos, float weight)
     {
         // Calculate desired velocity
         Vector3 desiredVelocity = targetPos - transform.position;
@@ -40,7 +40,6 @@ public abstract class Agent : MonoBehaviour
         //make sure the force is not greater than max force
         seekingForce = Vector3.ClampMagnitude(seekingForce, maxForce);
 
-        Debug.Log(seekingForce);
-        myPhysicsObject.ApplyForce(seekingForce);
+        return (seekingForce);
     }
 }

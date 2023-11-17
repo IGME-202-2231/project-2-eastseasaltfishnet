@@ -6,6 +6,7 @@ public class Missile : Agent
 {
     // Start is called before the first frame update
     private Transform target;
+    private Vector3 SeekingForce;
 
     private void Start()
     {
@@ -15,8 +16,11 @@ public class Missile : Agent
 
     protected override void CalcSteeringForces()
     {
-        
-        MissileSeek(target.position, 5f);
+
+        SeekingForce = MissileSeek(target.position, 5f);
+
+        // 应用这个力到物理对象上
+        myPhysicsObject.ApplyForce(SeekingForce);
 
     }
 }

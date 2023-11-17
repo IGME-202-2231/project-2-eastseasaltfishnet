@@ -224,9 +224,13 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   position: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
   mass: 1
-  CoefficientOfFriction: 3
+  CoefficientOfFriction: 0
   gravityStrength: 0
+  topSpeed: 100
+  useGravity: 0
+  useFriction: 0
 --- !u!33 &208663714
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -262,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5951011cdc6d04799d9f2f7ebc993d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  maxSpeed: 20
   maxForce: 500
 --- !u!1 &530371000
 GameObject:

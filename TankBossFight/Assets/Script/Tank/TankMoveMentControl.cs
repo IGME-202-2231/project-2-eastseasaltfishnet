@@ -66,7 +66,6 @@ public class TankControl : MonoBehaviour
         // 限制力的大小
         force = Vector3.ClampMagnitude(force, maxHullForce);
         
-        Debug.Log(forwardDirection);
         myPhysicsObject.ApplyForce(force);
         
         if (myPhysicsObject.velocity.magnitude < 0.2 && movementInput.y!=0)
