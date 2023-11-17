@@ -7,11 +7,15 @@ public class PhysicsObject : MonoBehaviour
     public Vector3 velocity;
     public Vector3 direction;
     public Vector3 position;
+    public Vector3 acceleration = Vector3.zero;
     public float mass;
     public float CoefficientOfFriction;
     public float gravityStrength;
+    public float topSpeed;
 
-    private Vector3 acceleration = Vector3.zero;
+    public bool useGravity;
+
+    
     
     // Start is called before the first frame update
     void Start()
@@ -22,9 +26,21 @@ public class PhysicsObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ApplyGravity();
-        ApplyFriction(CoefficientOfFriction);
+        if (useGravity)
+        {
+            ApplyGravity();
+        }
+
+
+     //   // 修改这里，检查速度是否不为零
+     //   if (velocity.magnitude > 0.01f)
+     //   {
+     //       ApplyFriction(CoefficientOfFriction);
+     //   }
+     //   //if the object is not moving yet it will call Start moving in the tank control
+        
         ApplyVelocity();
+        CheckTopSpeed();
     }
 
     public void ApplyGravity()
@@ -33,13 +49,33 @@ public class PhysicsObject : MonoBehaviour
     }
     public void ApplyForce(Vector3 force)
     {
+        
         acceleration += force / mass;
+        
     }
-    void ApplyFriction(float coeff)
+    public void ApplyFriction(float coeff)
     {
-        Vector3 friction = velocity * -1;
-        friction.Normalize();
-        friction = friction * coeff;
+
+
+        if (velocity.magnitude < 1.5f)
+        {
+            velocity = Vector3.zero;
+            acceleration = Vector3.zero;
+            return;
+        }
+        // calculate the friction 
+        Vector3 friction = -velocity.normalized * coeff;
+        float maxFrictionMagnitude = velocity.magnitude / Time.deltaTime;
+
+        // prevent the friction from acting back 
+        if (friction.magnitude > maxFrictionMagnitude)
+        {
+            friction = friction.normalized * maxFrictionMagnitude;
+        }
+
+        //Vector3 friction = velocity * -1;
+        //friction.Normalize();
+        //friction = friction * coeff;
         ApplyForce(friction);
     }
 
@@ -52,9 +88,44 @@ public class PhysicsObject : MonoBehaviour
         position += velocity * Time.deltaTime;
 
 
-        // Grab current direction from velocity  - New
-        direction = velocity.normalized;
+        if (velocity.magnitude > Mathf.Epsilon)
+        {
+            direction = velocity.normalized;
+        }
 
         transform.position = position;
+
+
+    }
+    public void StartMoveing(float _direction)
+    {
+        // Calculate the velocity for this frame - New
+        if (_direction > 0)
+        {
+            velocity = transform.forward * 3f; 
+        }
+        else
+        {
+            velocity = transform.forward  * -3f; 
+        }
+    }
+    public void CheckTopSpeed()
+    {
+        float currentSpeedSqr = velocity.sqrMagnitude;
+        float topSpeedSqr = topSpeed * topSpeed;
+
+        if (currentSpeedSqr > topSpeedSqr)
+        {
+            // 限制速度
+            velocity = velocity.normalized * topSpeed;
+            // 重置加速度
+            acceleration = Vector3.zero;
+        }
+        else if (currentSpeedSqr > topSpeedSqr * 0.8f) // 当速度接近最大速度的90%时开始减速
+        {
+            // 根据与最大速度的差距，逐渐减少加速度
+            float reduceFactor = (topSpeedSqr - currentSpeedSqr) / (topSpeedSqr * 0.1f);
+            acceleration *= reduceFactor;
+        }
     }
 }

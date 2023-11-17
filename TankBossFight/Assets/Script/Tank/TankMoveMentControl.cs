@@ -8,30 +8,39 @@ using UnityEngine.InputSystem;
 public class TankControl : MonoBehaviour
 {
     [SerializeField]
-    float hullSpeed = 5f;
+    float hullPower = 5f;
+    float maxHullForce = 10f;
     [SerializeField]
     float hullRotateSpeed = 5f;
 
     [SerializeField]
     float turretRotateSpeed = 5f;
-    
 
 
+    protected PhysicsObject myPhysicsObject;
 
     public GameObject turret;
 
-
-    private Camera followCamera;
     private Vector3 movementInput;
+    private Vector3 rotateInput;
 
     //use to keep the camera fallow the tank
     private Vector3 offsetOfTankAndCamera;
+    private Quaternion rotationOfTankAndCamera;
 
-    private float turretX;
+    private Vector3 hullForce;
+    private Vector3 hullRotationForce;
 
     // Start is called before the first frame update
     void Start()
     {
+        myPhysicsObject = GetComponent<PhysicsObject>();
+
+        // Get the initial offset between the camera and the tank
+        offsetOfTankAndCamera = Camera.main.transform.position - turret.transform.position;
+
+        // Get the initial rotation difference between the camera and the tank
+        rotationOfTankAndCamera = Quaternion.Inverse(turret.transform.rotation) * Camera.main.transform.rotation;
     }
 
     // Update is called once per frame
@@ -40,7 +49,7 @@ public class TankControl : MonoBehaviour
         TankHullMove();
         TankHullRotate();
         TurretRotation();
-        CameraFallowTankMoveAndRotate();
+        //CameraFallowTankMoveAndRotate();
     }
 
     /// <summary>
@@ -48,7 +57,25 @@ public class TankControl : MonoBehaviour
     /// </summary>
     public void TankHullMove()
     {
-        transform.Translate(0, 0, movementInput.y * hullSpeed * Time.deltaTime);
+        // 获取坦克当前朝向的前方方向
+        Vector3 forwardDirection = transform.forward;
+        
+        // 根据玩家输入和坦克朝向计算力
+        Vector3 force = forwardDirection * movementInput.y * hullPower * 100f;
+        
+        // 限制力的大小
+        force = Vector3.ClampMagnitude(force, maxHullForce);
+        
+        Debug.Log(forwardDirection);
+        myPhysicsObject.ApplyForce(force);
+        
+        if (myPhysicsObject.velocity.magnitude < 0.2 && movementInput.y!=0)
+        {
+            
+            myPhysicsObject.StartMoveing(movementInput.y);
+        }
+
+        //transform.Translate(0, 0, movementInput.y * hullPower * Time.deltaTime);
     }
 
     /// <summary>
@@ -57,6 +84,7 @@ public class TankControl : MonoBehaviour
     public void TankHullRotate()
     {
         transform.Rotate(0, movementInput.x * hullRotateSpeed * Time.deltaTime, 0);
+
     }
 
     /// <summary>
@@ -64,16 +92,18 @@ public class TankControl : MonoBehaviour
     /// </summary>
     public void TurretRotation()
     {
-        //turret.transform.Rotate(Vector3.up, turretX * turretRotateSpeed * Time.deltaTime);
+        turret.transform.Rotate(Vector3.up, rotateInput.x * turretRotateSpeed * Time.deltaTime );
+
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
+
     }
     public void OnMoveForTurretRotation(InputAction.CallbackContext context)
     {
-        var delta = context.ReadValue<Vector2>();
-        turretX = ClampValue(delta.x);
+        rotateInput = context.ReadValue<Vector2>();
+        rotateInput.x = ClampValue(rotateInput.x);
         
     }
     public float ClampValue(float delta)
@@ -95,9 +125,8 @@ public class TankControl : MonoBehaviour
     /// </summary>
     public void CameraFallowTankMoveAndRotate()
     {
-        //dont need the move code becasue it have hull as it parent 
-
-        //rotate with the turret
-        Camera.main.transform.rotation = turret.transform.rotation;
+      
+        Camera.main.transform.position = turret.transform.position + offsetOfTankAndCamera;
+        Camera.main.transform.rotation = turret.transform.rotation * rotationOfTankAndCamera;
     }
 }
