@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 3906119240165950437, guid: 13aa65a2742205e4290c019dc010ff88, type: 3}
+  selfDestructTimer: 6
 --- !u!1001 &2010930156409968067
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerTank
   - Wall
+  - PlayerTarget
   layers:
   - Default
   - TransparentFX

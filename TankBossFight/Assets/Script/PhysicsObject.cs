@@ -86,18 +86,16 @@ public class PhysicsObject : MonoBehaviour
 
     public void ApplyVelocity()
     {
-        // 更新速度
         velocity += acceleration * Time.deltaTime;
-        // 限制速度以避免过快
+        //prevent the tank from mobing too fast
         velocity = Vector3.ClampMagnitude(velocity, clampSpeed);
 
-        // 更新位置
+
         position += velocity * Time.deltaTime;
 
-        // 更新对象的Transform位置
-        transform.position = position;
 
-        // 清除加速度以便下一帧计算新的转向力
+        transform.position = position;
+        //prevent some werid issue
         acceleration = Vector3.zero;
 
 
@@ -121,14 +119,13 @@ public class PhysicsObject : MonoBehaviour
 
         if (currentSpeedSqr > topSpeedSqr)
         {
-            // 限制速度
+
             velocity = velocity.normalized * topSpeed;
-            // 重置加速度
             acceleration = Vector3.zero;
         }
-        else if (currentSpeedSqr > topSpeedSqr * 0.8f) // 当速度接近最大速度的90%时开始减速
+        // when the speed almost reach 80% of the top speed, the slow down the increase of acceleration 
+        else if (currentSpeedSqr > topSpeedSqr * 0.8f) 
         {
-            // 根据与最大速度的差距，逐渐减少加速度
             float reduceFactor = (topSpeedSqr - currentSpeedSqr) / (topSpeedSqr * 0.1f);
             acceleration *= reduceFactor;
         }
