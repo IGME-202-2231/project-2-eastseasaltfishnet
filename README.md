@@ -1,4 +1,4 @@
-# Fish Farm Master
+# Tank Boss Fight
 
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
 
@@ -11,10 +11,9 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 ## Simulation Design
 
-Fish Farm Simulator
+1v1 Tank fight
 
-The player operates a fish farm, where the player needs to raise as many fish as possible within a time limit,   
-while guarding against invasive species that appear on the farm.
+You will need to drive your tank to fight with an AI tank.
 
 ### Controls
 
