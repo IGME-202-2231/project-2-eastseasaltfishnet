@@ -9,6 +9,7 @@ public class TankControl : MonoBehaviour
 {
     [SerializeField]
     float hullPower = 5f;
+    [SerializeField]
     float maxHullForce = 10f;
     [SerializeField]
     float hullRotateSpeed = 5f;
@@ -57,13 +58,11 @@ public class TankControl : MonoBehaviour
     /// </summary>
     public void TankHullMove()
     {
-        // 获取坦克当前朝向的前方方向
+        // get the fawrd direction
         Vector3 forwardDirection = transform.forward;
-        
-        // 根据玩家输入和坦克朝向计算力
         Vector3 force = forwardDirection * movementInput.y * hullPower * 100f;
         
-        // 限制力的大小
+        // clamp the force
         force = Vector3.ClampMagnitude(force, maxHullForce);
         
         myPhysicsObject.ApplyForce(force);
@@ -73,8 +72,6 @@ public class TankControl : MonoBehaviour
             
             myPhysicsObject.StartMoveing(movementInput.y);
         }
-
-        //transform.Translate(0, 0, movementInput.y * hullPower * Time.deltaTime);
     }
 
     /// <summary>

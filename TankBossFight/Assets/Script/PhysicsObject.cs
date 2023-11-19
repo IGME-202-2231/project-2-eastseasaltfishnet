@@ -12,6 +12,7 @@ public class PhysicsObject : MonoBehaviour
     public float CoefficientOfFriction;
     public float gravityStrength;
     public float topSpeed;
+    public float clampSpeed;
 
     public bool useGravity;
     public bool useFriction;
@@ -43,7 +44,7 @@ public class PhysicsObject : MonoBehaviour
         }
         
         ApplyVelocity();
-        //CheckTopSpeed();
+        CheckTopSpeed();
     }
 
     public void ApplyGravity()
@@ -88,7 +89,7 @@ public class PhysicsObject : MonoBehaviour
         // 更新速度
         velocity += acceleration * Time.deltaTime;
         // 限制速度以避免过快
-        velocity = Vector3.ClampMagnitude(velocity, topSpeed);
+        velocity = Vector3.ClampMagnitude(velocity, clampSpeed);
 
         // 更新位置
         position += velocity * Time.deltaTime;

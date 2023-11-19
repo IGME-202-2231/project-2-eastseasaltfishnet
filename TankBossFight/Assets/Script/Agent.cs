@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -24,22 +25,38 @@ public abstract class Agent : MonoBehaviour
 
     protected abstract void CalcSteeringForces();
 
-    protected Vector3 MissileSeek(Vector3 targetPos, float weight)
+    protected Vector3 MissileSeek(Vector3 targetPos, float turningSpeed)
     {
-        // Calculate desired velocity
-        Vector3 desiredVelocity = targetPos - transform.position;
+        Vector3 targetDirection = (targetPos - transform.position).normalized;
 
-        // Set desired = max speed
-        desiredVelocity = desiredVelocity.normalized * maxSpeed;
+        // calculate the front of the missile
+        Quaternion targetRotation = Quaternion.FromToRotation(transform.forward, targetDirection) * transform.rotation;
 
-        // Calculate seek steering force
-        Vector3 seekingForce = (desiredVelocity - myPhysicsObject.velocity) * weight;
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turningSpeed);
 
+        Vector3 steeringForce;
+        steeringForce = transform.forward * maxSpeed;
 
-        //Vector3 steeringForce=Vector3.zero;
-        //make sure the force is not greater than max force
-        seekingForce = Vector3.ClampMagnitude(seekingForce, maxForce);
+        return (steeringForce);
+    }
+    protected Vector3 MissileAvoidWall( float turningSpeed)
+    {
+        Vector3 steeringForce = Vector3.zero;
 
-        return (seekingForce);
+        //The missile will only move upward when advoid the wall
+        Vector3 avoidDirection = Vector3.up;
+
+        // rotate at the top of the missile
+        Quaternion avoidRotation = Quaternion.FromToRotation(transform.forward, avoidDirection) * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, avoidRotation, Time.deltaTime * turningSpeed);
+
+        steeringForce = avoidDirection * maxSpeed;
+
+        return (steeringForce);
+    }
+
+    public Vector3 calcFuturePosition(float time = 1f)
+    {
+        return myPhysicsObject.velocity * time + transform.position;
     }
 }
