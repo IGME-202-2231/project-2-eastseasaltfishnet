@@ -9,8 +9,6 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 -   Name: ZhihaoChen
 -   Section: _##_
 
-# 1v1 Tank Fight Simulation
-
 ## Overview
 In this simulation, you'll be driving your tank to engage in combat with an AI-controlled tank. Your goal is to destroy the enemy tank before your health runs out.
 
@@ -107,6 +105,8 @@ material of smoke and explosion were downloaded
 -   _List all project sources here –models, textures, sound clips, assets, etc._
 -   _If an asset is from the Unity store, include a link to the page and the author’s name_
 
+
+# 坦克大战
 
 ## Agent 1: 敌人Boss
 
