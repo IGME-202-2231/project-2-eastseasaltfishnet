@@ -9,23 +9,105 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 -   Name: ZhihaoChen
 -   Section: _##_
 
-## Simulation Design
+# 1v1 Tank Fight Simulation
 
-1v1 Tank fight
+## Overview
+In this simulation, you'll be driving your tank to engage in combat with an AI-controlled tank. Your goal is to destroy the enemy tank before your health runs out.
 
-You will need to drive your tank to fight with an AI tank.
+## Controls
+- **Movement**: Use `W`, `A`, `S`, `D` or the arrow keys for movement.
+- **Turning**: The tank can only pivot in place.
+- **Fire**: Left click
+- Ps make add aiming system
 
-### Controls
+## Player
+The player has a health value that must be maintained while attempting to destroy the AI enemy.
 
-W,A,S,D/arrow key to control the movement
-Have to notice that the tank can only 原地转向
 
-玩家有生命值，需要在生命值耗尽之前击毁ai敌人
+## AI Tank (Enemy Boss)
 
--   _List all of the actions the player can have in your simulation_
-    -   _Include how to preform each action ( keyboard, mouse, UI Input )_
-    -   _Include what impact an action has in the simulation ( if is could be unclear )_
-    -   
+### Description
+This is the boss an AI tank with stronger firepower, capable of shooting main cannon rounds and anti-tank missiles.
+
+### States
+
+#### State 1: Searching for Player
+- **Objective**: Seek out the player's position and approach.
+- **Behaviors**:
+  - Avoid walls to prevent collision.
+  - Seek player: Move towards the player's last known position.
+  - Lock on player: Turret continuously faces the player but doesn't attack.
+- **Transitions**:
+  - To: Attacking mode when the main cannon can hit the player.
+  - To: Berserk mode when health drops below 20%.
+
+#### State 2: Attack Mode
+- **Objective**: Attack the player when they are not behind cover.
+- **Behaviors**:
+  - Rotate in place to keep the front of the tank towards the player.
+- **Transitions**:
+  - To: Searching mode if the player goes behind cover.
+  - To: Berserk mode when health drops below 20%.
+ 
+  #### Steering Behaviors
+1. Avoid Walls: Prevents the tank from colliding with walls.
+2. Alert Search for Player: Moves towards the player's last known location.
+3. Lock on Player: The turret continuously aims at the player but does not fire.
+
+#### Obstacles
+- **Walls**: The tank cannot pass through walls and must avoid collisions.
+- **Player**: Tanks cannot overlap with each other, ensuring physical separation during maneuvers.
+
+
+  
+## Missile
+
+### Description
+Missiles launched by the AI tank will track the player's position and can avoid obstacles to some extent.
+
+### States
+
+#### State 1: Seeking Player
+- **Objective**: Acquire and move towards the player's position.
+- **Behaviors**:
+  - Seek target: Head straight for the player's location.
+- **Transitions**:
+  - To: Avoiding walls if an obstacle is detected.
+
+#### State 2: Avoiding Walls
+- **Objective**: Avoid walls by applying an upward force to the missile.
+- **Transitions**:
+  - To: Seeking player if no walls are detected after a cooldown.
+
+#### Steering Behaviors
+- Seek Target: The missile heads straight for the player's location.
+- Avoid Walls: The missile will adjust its path to avoid collisions with walls.
+
+#### Obstacles
+- **Any Collider**: Colliding with any object with a collider will cause the missile to explode.
+
+  
+## Make it Your Own
+  
+3D: I made all the 3D asset in the game
+Some Particle. 
+material of smoke and explosion were downloaded
+
+- _List out what you added to your game to make it different for you_
+- _If you will add more agents or states make sure to list here and add it to the documention above_
+- _If you will add your own assets make sure to list it here and add it to the Sources section
+
+
+## Known Issues
+
+-it may be a bit diffcult to keep the fish together from escaping from the invading fish
+
+### Requirements not completed
+
+-   _List all project sources here –models, textures, sound clips, assets, etc._
+-   _If an asset is from the Unity store, include a link to the page and the author’s name_
+
+
 ## Agent 1: 敌人Boss
 
 ### Description
@@ -81,65 +163,44 @@ Have to notice that the tank can only 原地转向
 
 
 ## Agent 2: 导弹
+你需要知道的内容：我很想把导弹状态的判断前方有没有墙壁写成一个method但是当我写到方法里并且使用的时候，导弹容易在寻找玩家和躲避墙壁之间快速切换，导致导弹产生奇怪的飞行轨迹。所以我就把他们都放在一起了
 
 ### Description
-这是敌人发射的导弹，会跟踪你所在的位置并且一定程度上有躲避障碍物的能力，会在碰到任何物体或者是
+这是敌人发射的导弹，会跟踪你所在的位置并且一定程度上有躲避障碍物的能力，会在碰到任何物体或者是发射后6秒后爆炸。只有命中玩家才会造成伤害
 
-### State 1: Hunting
-
-#### Objective
-The primary goal of this state is for the invading fish to hunt and catch the player's fish.
-
-#### Steering Behaviors
-- **Chase:** Aggressively pursue the closest fish within the farm(it moves really fast!).
-- **Capture:** Execute a catch maneuver when close enough to a target fish.
-
-#### Obstacles
-- **Terrain Avoidance:** Like the player's fish, the invading fish cannot navigate over the fish farm's terrain and must go around any environmental obstacles.
-
-#### Separation
-- **From Nets:** Evade nets thrown by the player, which are used to catch or deter the invading fish, but the net wont appear unleas player click the right click.
-
-#### State Transitions
-- **Shock Avoidance:** If a net thrown by the player's right-click is nearby, the invading fish will temporarily stop hunting and attempt to escape, showing a shock reaction.
-- **Resume Hunting:** After the shock from the net has worn off, if no other immediate threat is present, the invading fish will resume its hunting behavior.
-
-### State 2: Fleeing
+### State 1: 寻找玩家
 
 #### Objective
-When threatened by the player's right click, the invading fish will attempt to flee the area to avoid capture or harm.
+获取玩家位置并且飞向玩家
 
 #### Steering Behaviors
-- **Escape:** If the invading fish perceives a net close to it, it will prioritize escaping from the area.
+- seek target 获取玩家所在位置径直飞向玩家
 
 #### Obstacles
-- **Same as Hunting State:** The invading fish must continue to navigate around the same environmental obstacles even while fleeing.
-
-#### Separation
-- **From Threats:** Maintain a safe distance from the player's attempts to capture or stun it. It wont run away from your mouse, it will only reach when you right click to throw a net.
+所有有coliider的物体都会让导弹爆炸
 
 #### State Transitions
-- **Threat Detected:** If the player attempts to catch the invading fish and fails, the fish will enter this state to escape.
-- **Safe Zone Reached:** Once the invading fish feels it has escaped the threat, it may transition back to the hunting state if it is far enough away from the player.
+会从以下状态切换到本状态
+躲避墙壁->寻找玩家（条件当躲避墙壁的倒计时结束时，并且没有检测到墙壁就会朝玩家飞过去）就是朝玩家飞过去命中后爆炸
 
-  
-## Make it Your Own
-  
-Plan to make all the asset by myself
+会从本状态切换到以下状态
+寻找玩家->躲避墙壁（当前方有墙壁并且玩家不在墙壁前方时） 施加一个向上的力躲避墙壁
 
-- _List out what you added to your game to make it different for you_
-- _If you will add more agents or states make sure to list here and add it to the documention above_
-- _If you will add your own assets make sure to list it here and add it to the Sources section
+### State 2: 躲避墙壁
 
-
-## Known Issues
-
--it may be a bit diffcult to keep the fish together from escaping from the invading fish
-
-### Requirements not completed
-
--   _List all project sources here –models, textures, sound clips, assets, etc._
--   _If an asset is from the Unity store, include a link to the page and the author’s name_
+#### Objective
+此方法会通过向前方发射射线检测墙壁如果在射线碰到玩家之前先检测到墙壁（通过对比tag）就是开始躲避墙壁，如果玩家在墙壁前面就将不会出发本状态
 
 
+#### Obstacles
+所有有colider的物体
 
+#### Steering Behaviors
+- 躲避墙壁  将会对导弹施加一个向上的力
+
+#### State Transitions
+会从以下状态切换到本状态
+寻找玩家->躲避墙壁（当前方有墙壁并且玩家不在墙壁前方时） 施加一个向上的力躲避墙壁
+
+会从本状态切换到以下状态
+躲避墙壁->寻找玩家（条件当躲避墙壁的倒计时结束时，并且没有检测到墙壁就会朝玩家飞过去）就是朝玩家飞过去命中后爆炸
