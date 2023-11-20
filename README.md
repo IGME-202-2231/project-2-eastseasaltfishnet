@@ -17,65 +17,73 @@ You will need to drive your tank to fight with an AI tank.
 
 ### Controls
 
-Left click to feed the fish.
-Right click to catch a invasive fish.
+W,A,S,D/arrow key to control the movement
+Have to notice that the tank can only 原地转向
+
+玩家有生命值，需要在生命值耗尽之前击毁ai敌人
 
 -   _List all of the actions the player can have in your simulation_
     -   _Include how to preform each action ( keyboard, mouse, UI Input )_
     -   _Include what impact an action has in the simulation ( if is could be unclear )_
     -   
-## Agent 1: Fish
+## Agent 1: 敌人Boss
 
 ### Description
-This agent actively seeks out feed placed within the environment and attempts to avoid predatory invasive fish. If it consumes two servings of feed within a five-second window, it reproduces, adding another fish to the simulation. However, it is also prey for the invasive fish, making its survival a balancing act between feeding, breeding, and evading predators.
-
-### State 1: Forage and Breed
-
-#### Objective
-The primary focus of this state is for the fish to locate and consume food while also seeking opportunities to breed. It must balance its need to feed with the risk of predation.
-
-#### Steering Behaviors
-- **Separation:** Maintain personal space within the school to prevent crowding.
-- **Flee:** Evade invasive fish when they come within a defined danger radius.
-
-#### Obstacles
-- **Terrain:** Natural features within the fish farm that the fish must navigate around.
-- **Future Obstacles:** Additional obstacle types are planned to be added to increase complexity, it may be underwater plants or artificial structures.
-
-#### Separation
-- **From Invasive Fish:** Maintains distance from predatory invasive fish, switching to flee behavior when necessary.
-
-#### State Transitions
-- **Normal Cruising:** When there is no immediate food or threat, the fish will swim at a steady pace with smooth turns and consistent acceleration.
-- **Feeding:** Prioritize moving towards food when it becomes available.
-- **Evading Predators:** When a predator is spotted, group together and prioritize escaping the threat over feeding.
+这就是你需要击毁的目标，他的火力会比你强大，不但会发射主炮还会发射反坦克导弹。他会在地图上寻找玩家的位置并向玩家的位置行驶，他的火炮只有炮弹可以击中玩家他才会开火但是导弹会从炮塔上的导弹发射架一直发射。
 
 
-### State 2: Escape
+### State 1: 寻找玩家
 
 #### Objective
-The singular focus of this state is to avoid becoming prey. The fish engages in behaviors designed to maximize the distance from predators as quickly as possible.
+当敌人主炮无法攻击到玩家的时候，他会通过直接获得玩家的位置并且向玩家靠拢，虽然不会朝玩家开炮但是会发射导弹一次两发然后冷却一段时间
 
 #### Steering Behaviors
-- **Flee:** Take the most direct path away from the nearest invasive fish.
-- **Schooling:** Align with the movement of nearby fish to form a group.
-
+1：避开墙壁： 防止撞墙。
+2；警戒寻找玩家：朝玩家所在的位置行驶
+3；锁定玩家： 保持炮塔将持续看向玩家但是不会攻击玩家
 
 #### Obstacles
-- **Same as Foraging State:** Even while fleeing, the fish must still navigate around the natural terrain features within the fish farm.
-
-#### Separation
-- **From Predators:** The fish will increase its separation from predators, using speed and agility to escape( but usally it wont work, the invading fish is much faster).
+1： 墙壁 他无法穿越墙壁
+2： 玩家 两台坦克无法重叠（但是不包括炮管）
 
 #### State Transitions
-- **Predator Within Danger Radius:** The fish instantly transitions to this state when a predatory fish enters a defined proximity.
-- **Predator No Longer a Threat:** Once the fish has successfully evaded the predator, or the predator leaves the danger radius, the fish can transition back to the foraging or breeding states depending on its energy needs and environmental conditions.
+
+会从以下状态切换到本状态
+-  攻击模式->警戒模式 （条件：主炮无法攻击到玩家也就是当玩家驶躲在掩体的时候）停止开火向玩家的位置前进，并且一次发射两发导弹
+
+  会从本状态切换到以下状态
+  警戒模式->攻击模式 （条件：主炮可以攻击到玩家也就是当玩家驶出掩体的时候）停止追踪玩家，转换到只原地转向，使用主炮向玩家开火并且切换到快速发射4发导弹的模式
+ 警戒模式->狂暴模式 （条件血量低于20%） 持续追踪并且驶向玩家 装填速度加快，导弹将进行6发骑射
+
+### State 2: 攻击模式
+
+#### Objective
+当玩家不在掩体后面时，就会从警戒模式切换到攻击模式，这个时候他会尽力把正对玩家让他装甲最厚的方向面对玩家（本游戏没有装甲机制）。也就是说在看到玩家之后就只会原地转向。  
+并且主炮开火而且导弹也会有些差别他会从警戒模式的发射2发导弹到攻击模式快速发射4发导弹
 
 
-## Agent 2: invading Fish
+#### Steering Behaviors
+- 原地旋转 保持车头指向玩家
+- 锁定玩家： 保持炮塔将持续看向玩家，并且火炮会攻击玩家
+
+#### Obstacles
+和上面一样
+-1： 墙壁 他无法穿越墙壁
+2： 玩家 两台坦克无法重叠（但是不包括炮管）
+
+#### State Transitions.
+会从以下状态切换到本状态
+警戒模式->攻击模式 （条件：主炮可以攻击到玩家也就是当玩家驶出掩体的时候）停止追踪玩家，转换到只原地转向，使用主炮向玩家开火并且切换到快速发射4发导弹的模式
+
+会从本状态切换到以下状态
+ 攻击模式->警戒模式 （条件：主炮无法攻击到玩家也就是当玩家驶躲在掩体的时候）停止开火向玩家的位置前进，并且一次发射两发导弹
+ 攻击模式->狂暴模式 （条件血量低于20%） 持续追踪并且驶向玩家 装填速度加快，导弹将进行6发骑射
+
+
+## Agent 2: 导弹
 
 ### Description
-The invading fish spawn randomly at positions outside of the player's camera view but close to the fish farm. Their objective is to invade the fish farm and catch the player's fish, introducing an element of risk and challenge in managing the farm.
+这是敌人发射的导弹，会跟踪你所在的位置并且一定程度上有躲避障碍物的能力，会在碰到任何物体或者是
 
 ### State 1: Hunting
 
