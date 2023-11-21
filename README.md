@@ -9,115 +9,88 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 -   Name: ZhihaoChen
 -   Section: _##_
 
-## Simulation Design
+## Overview
+In this simulation, you'll be driving your tank to engage in combat with an AI-controlled tank. Your goal is to destroy the enemy tank before your health runs out.
 
-1v1 Tank fight
+## Controls
+- **Movement**: Use `W`, `A`, `S`, `D` or the arrow keys for movement.
+- **Turning**: The tank can only pivot in place.
+- **Fire**: Left click
+- Ps make add aiming system
 
-You will need to drive your tank to fight with an AI tank.
+## Player
+The player has a health value that must be maintained while attempting to destroy the AI enemy.
 
-### Controls
 
-Left click to feed the fish.
-Right click to catch a invasive fish.
-
--   _List all of the actions the player can have in your simulation_
-    -   _Include how to preform each action ( keyboard, mouse, UI Input )_
-    -   _Include what impact an action has in the simulation ( if is could be unclear )_
-    -   
-## Agent 1: Fish
+## AI Tank (Enemy Boss)
 
 ### Description
-This agent actively seeks out feed placed within the environment and attempts to avoid predatory invasive fish. If it consumes two servings of feed within a five-second window, it reproduces, adding another fish to the simulation. However, it is also prey for the invasive fish, making its survival a balancing act between feeding, breeding, and evading predators.
+This is the boss an AI tank with stronger firepower, capable of shooting main cannon rounds and anti-tank missiles.
 
-### State 1: Forage and Breed
+### States
 
-#### Objective
-The primary focus of this state is for the fish to locate and consume food while also seeking opportunities to breed. It must balance its need to feed with the risk of predation.
+#### State 1: Searching for Player
+- **Objective**: Seek out the player's position and approach.
+- **Behaviors**:
+  - Avoid walls to prevent collision.
+  - Seek player: Move towards the player's last known position.
+  - Lock on player: Turret continuously faces the player but doesn't attack.
+- **Transitions**:
+  - To: Attacking mode when the main cannon can hit the player.
+  - To: Berserk mode when health drops below 20%.
 
-#### Steering Behaviors
-- **Separation:** Maintain personal space within the school to prevent crowding.
-- **Flee:** Evade invasive fish when they come within a defined danger radius.
-
-#### Obstacles
-- **Terrain:** Natural features within the fish farm that the fish must navigate around.
-- **Future Obstacles:** Additional obstacle types are planned to be added to increase complexity, it may be underwater plants or artificial structures.
-
-#### Separation
-- **From Invasive Fish:** Maintains distance from predatory invasive fish, switching to flee behavior when necessary.
-
-#### State Transitions
-- **Normal Cruising:** When there is no immediate food or threat, the fish will swim at a steady pace with smooth turns and consistent acceleration.
-- **Feeding:** Prioritize moving towards food when it becomes available.
-- **Evading Predators:** When a predator is spotted, group together and prioritize escaping the threat over feeding.
-
-
-### State 2: Escape
-
-#### Objective
-The singular focus of this state is to avoid becoming prey. The fish engages in behaviors designed to maximize the distance from predators as quickly as possible.
-
-#### Steering Behaviors
-- **Flee:** Take the most direct path away from the nearest invasive fish.
-- **Schooling:** Align with the movement of nearby fish to form a group.
-
+#### State 2: Attack Mode
+- **Objective**: Attack the player when they are not behind cover.
+- **Behaviors**:
+  - Rotate in place to keep the front of the tank towards the player.
+- **Transitions**:
+  - To: Searching mode if the player goes behind cover.
+  - To: Berserk mode when health drops below 20%.
+ 
+  #### Steering Behaviors
+1. Avoid Walls: Prevents the tank from colliding with walls.
+2. Alert Search for Player: Moves towards the player's last known location.
+3. Lock on Player: The turret continuously aims at the player but does not fire.
 
 #### Obstacles
-- **Same as Foraging State:** Even while fleeing, the fish must still navigate around the natural terrain features within the fish farm.
-
-#### Separation
-- **From Predators:** The fish will increase its separation from predators, using speed and agility to escape( but usally it wont work, the invading fish is much faster).
-
-#### State Transitions
-- **Predator Within Danger Radius:** The fish instantly transitions to this state when a predatory fish enters a defined proximity.
-- **Predator No Longer a Threat:** Once the fish has successfully evaded the predator, or the predator leaves the danger radius, the fish can transition back to the foraging or breeding states depending on its energy needs and environmental conditions.
+- **Walls**: The tank cannot pass through walls and must avoid collisions.
+- **Player**: Tanks cannot overlap with each other, ensuring physical separation during maneuvers.
 
 
-## Agent 2: invading Fish
+  
+## Missile
 
 ### Description
-The invading fish spawn randomly at positions outside of the player's camera view but close to the fish farm. Their objective is to invade the fish farm and catch the player's fish, introducing an element of risk and challenge in managing the farm.
+Missiles launched by the AI tank will track the player's position and can avoid obstacles to some extent.
 
-### State 1: Hunting
+### States
 
-#### Objective
-The primary goal of this state is for the invading fish to hunt and catch the player's fish.
+#### State 1: Seeking Player
+- **Objective**: Acquire and move towards the player's position.
+- **Behaviors**:
+  - Seek target: Head straight for the player's location.
+- **Transitions**:
+  - To: Avoiding walls if an obstacle is detected.
 
-#### Steering Behaviors
-- **Chase:** Aggressively pursue the closest fish within the farm(it moves really fast!).
-- **Capture:** Execute a catch maneuver when close enough to a target fish.
-
-#### Obstacles
-- **Terrain Avoidance:** Like the player's fish, the invading fish cannot navigate over the fish farm's terrain and must go around any environmental obstacles.
-
-#### Separation
-- **From Nets:** Evade nets thrown by the player, which are used to catch or deter the invading fish, but the net wont appear unleas player click the right click.
-
-#### State Transitions
-- **Shock Avoidance:** If a net thrown by the player's right-click is nearby, the invading fish will temporarily stop hunting and attempt to escape, showing a shock reaction.
-- **Resume Hunting:** After the shock from the net has worn off, if no other immediate threat is present, the invading fish will resume its hunting behavior.
-
-### State 2: Fleeing
-
-#### Objective
-When threatened by the player's right click, the invading fish will attempt to flee the area to avoid capture or harm.
+#### State 2: Avoiding Walls
+- **Objective**: Avoid walls by applying an upward force to the missile.
+- **Transitions**:
+  - To: Seeking player if no walls are detected after a cooldown.
 
 #### Steering Behaviors
-- **Escape:** If the invading fish perceives a net close to it, it will prioritize escaping from the area.
+- Seek Target: The missile heads straight for the player's location.
+- Avoid Walls: The missile will adjust its path to avoid collisions with walls.
 
 #### Obstacles
-- **Same as Hunting State:** The invading fish must continue to navigate around the same environmental obstacles even while fleeing.
-
-#### Separation
-- **From Threats:** Maintain a safe distance from the player's attempts to capture or stun it. It wont run away from your mouse, it will only reach when you right click to throw a net.
-
-#### State Transitions
-- **Threat Detected:** If the player attempts to catch the invading fish and fails, the fish will enter this state to escape.
-- **Safe Zone Reached:** Once the invading fish feels it has escaped the threat, it may transition back to the hunting state if it is far enough away from the player.
+- **Any Collider**: Colliding with any object with a collider will cause the missile to explode.
 
   
 ## Make it Your Own
   
-Plan to make all the asset by myself
+3D: I made all the 3D asset in the game
+Some Particle. 
+material of smoke and explosion were downloaded  
+Link:https://github.com/Tvtig/RocketLauncher/tree/main/Assets/Tvtig/Rocket%20Launcher/Art/Textures
 
 - _List out what you added to your game to make it different for you_
 - _If you will add more agents or states make sure to list here and add it to the documention above_
@@ -134,4 +107,82 @@ Plan to make all the asset by myself
 -   _If an asset is from the Unity store, include a link to the page and the author’s name_
 
 
+# 坦克大战
 
+## Agent 1: 敌人Boss
+
+### Description
+这就是你需要击毁的目标，他的火力会比你强大，不但会发射主炮还会发射反坦克导弹。他会在地图上寻找玩家的位置并向玩家的位置行驶，他的火炮只有炮弹可以击中玩家他才会开火，但是导弹会从炮塔上的导弹发射架一直发射。
+
+### State 1: 寻找玩家
+
+#### Objective
+当敌人主炮无法攻击到玩家的时候，他会通过直接获得玩家的位置并且向玩家靠拢，虽然不会朝玩家开炮但是会发射导弹一次两发然后冷却一段时间。
+
+#### Steering Behaviors
+1. 避开墙壁：防止撞墙。
+2. 警戒寻找玩家：朝玩家所在的位置行驶。
+3. 锁定玩家：保持炮塔将持续看向玩家但是不会攻击玩家。
+
+#### Obstacles
+1. 墙壁：他无法穿越墙壁。
+2. 玩家：两台坦克无法重叠（但是不包括炮管）。
+
+#### State Transitions
+- 从攻击模式切换到警戒模式（条件：主炮无法攻击到玩家，即玩家躲在掩体时）。停止开火，向玩家位置前进，并且一次发射两发导弹。
+- 从警戒模式切换到攻击模式（条件：主炮可以攻击到玩家，即玩家驶出掩体时）。停止追踪玩家，转换到只原地转向，使用主炮向玩家开火，并且切换到快速发射4发导弹的模式。
+- 从警戒模式切换到狂暴模式（条件：血量低于20%）。持续追踪并驶向玩家，装填速度加快，导弹将进行6发齐射。
+
+### State 2: 攻击模式
+
+#### Objective
+当玩家不在掩体后面时，敌人将从警戒模式切换到攻击模式。这时，他会尽力让最厚的装甲面对玩家（虽然游戏中没有装甲机制）。看到玩家后，将只进行原地转向。主炮开火，导弹行为也有所变化，从警戒模式的发射两发导弹切换到攻击模式快速发射四发导弹。
+
+#### Steering Behaviors
+- 原地旋转：保持车头指向玩家。
+- 锁定玩家：炮塔持续对准玩家，主炮攻击。
+
+#### Obstacles
+与上面相同。
+1. 墙壁：无法穿越墙壁。
+2. 玩家：两台坦克无法重叠（但是不包括炮管）。
+
+#### State Transitions
+- 从警戒模式切换到攻击模式（条件：主炮可以攻击到玩家，即玩家驶出掩体时）。停止追踪玩家，转换到只原地转向，使用主炮向玩家开火，并且切换到快速发射4发导弹的模式。
+- 从攻击模式切换到警戒模式（条件：主炮无法攻击到玩家，即玩家躲在掩体时）。停止开火，向玩家位置前进，并发射两发导弹。
+- 从攻击模式切换到狂暴模式（条件：血量低于20%）。持续追踪并驶向玩家，装填速度加快，导弹进行6发齐射。
+
+## Agent 2: 导弹
+
+### Description
+这是敌人发射的导弹，会跟踪你所在的位置，并在一定程度上能够避免障碍物。会在碰到任何物体或者是发射后6秒后爆炸。只有命中玩家才会造成伤害。
+
+### State 1: 寻找玩家
+
+#### Objective
+获取玩家位置并飞向玩家。
+
+#### Steering Behaviors
+- 寻找目标：直接飞向玩家位置。
+
+#### Obstacles
+所有有collider的物体都会导致导弹爆炸。
+
+#### State Transitions
+- 从躲避墙壁状态切换到寻找玩家状态（条件：躲避墙壁的倒计时结束且没有检测到墙壁时）。导弹朝玩家飞去并在命中后爆炸。
+- 从寻找玩家状态切换到躲避墙壁状态（条件：前方有墙壁且玩家不在墙壁前方时）。对导弹施加向上的力来躲避墙壁。
+
+### State 2: 躲避墙壁
+
+#### Objective
+此状态会通过向前方发射射线来检测墙壁。如果射线在碰到玩家之前先检测到墙壁（通过比较标签），导弹将开始躲避墙壁。如果玩家在墙壁前面，则不会触发此状态。
+
+#### Obstacles
+所有有collider的物体。
+
+#### Steering Behaviors
+- 躲避墙壁：对导弹施加向上的力来躲避墙壁。
+
+#### State Transitions
+- 从寻找玩家状态切换到躲避墙壁状态（条件：前方有墙壁且玩家不在墙壁前方时）。对导弹施加向上的力来躲避墙壁。
+- 从躲避墙壁状态切换到寻找玩家状态（条件：躲避墙壁的倒计时结束且没有检测到墙壁时）。导弹朝玩家飞去并在命中后爆炸。
