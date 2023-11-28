@@ -5,8 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/TestMissile.unity
+  - enabled: 0
+    path: Assets/Scenes/TestScene/TestMissile.unity
     guid: 870def3bba57655448f7622fbed5267f
+  - enabled: 1
+    path: Assets/Scenes/TestScene/buildingTestScene.unity
+    guid: 9932bbf9ffffaea40829edfc1cfe2c22
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9ddc0a66042f2f94a9a0c22e5c1b2881, type: 2}

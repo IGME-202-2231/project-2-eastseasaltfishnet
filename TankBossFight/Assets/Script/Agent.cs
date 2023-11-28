@@ -55,6 +55,21 @@ public abstract class Agent : MonoBehaviour
         return (steeringForce);
     }
 
+    protected Vector3 EnemySeekPlayer(Vector3 targetPos,float enemySpeed,float enemyTurnSpeed)
+    {
+        Vector3 flatTargetPos = new Vector3(targetPos.x, transform.position.y, targetPos.z);
+        Vector3 targetDirection = (flatTargetPos - transform.position).normalized;
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        Quaternion slerpedRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * enemyTurnSpeed);
+
+        transform.rotation = Quaternion.Euler(0, slerpedRotation.eulerAngles.y, 0);
+
+        Vector3 steeringForce = transform.forward * enemySpeed;
+
+        return steeringForce;
+    }
+
     public Vector3 calcFuturePosition(float time = 1f)
     {
         return myPhysicsObject.velocity * time + transform.position;

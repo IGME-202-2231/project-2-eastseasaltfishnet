@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 120
-  maxForce: 5000
+  maxForce: 8000
   avoidWallRayDetectionDistance: 100
-  turningSpeed: 20
+  turningSpeed: 80
 --- !u!114 &7769808009286112135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,11 +120,11 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   position: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
-  mass: 1
+  mass: 0.5
   CoefficientOfFriction: 0
   gravityStrength: 0
-  topSpeed: 80
-  clampSpeed: 80
+  topSpeed: 60
+  clampSpeed: 60
   useGravity: 0
   useFriction: 0
 --- !u!65 &-1927484292564765208

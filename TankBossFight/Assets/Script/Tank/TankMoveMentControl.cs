@@ -72,6 +72,7 @@ public class TankControl : MonoBehaviour
             
             myPhysicsObject.StartMoveing(movementInput.y);
         }
+
     }
 
     /// <summary>
@@ -94,13 +95,15 @@ public class TankControl : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
+                
 
     }
     public void OnMoveForTurretRotation(InputAction.CallbackContext context)
     {
         rotateInput = context.ReadValue<Vector2>();
         rotateInput.x = ClampValue(rotateInput.x);
-        
+        Debug.Log(rotateInput);
+
     }
     public float ClampValue(float delta)
     {

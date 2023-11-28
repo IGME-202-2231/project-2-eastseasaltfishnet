@@ -223,7 +223,6 @@ GameObject:
   - component: {fileID: 6091787028123485090}
   - component: {fileID: 8037309113125160045}
   - component: {fileID: 6331214123051730199}
-  - component: {fileID: 1123164025098507630}
   m_Layer: 0
   m_Name: Hull
   m_TagString: PlayerTank
@@ -337,100 +336,6 @@ MonoBehaviour:
   hullRotateSpeed: 70
   turretRotateSpeed: 5
   turret: {fileID: 4967934301989020693}
---- !u!114 &1123164025098507630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685188020629699247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 683c26587338be242a95b537b6868486, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6331214123051730199}
-        m_TargetAssemblyTypeName: TankControl, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 98287592-0490-479e-a77a-e00e50524430
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7167b165-0f46-4284-a988-1a86f702ca83
-    m_ActionName: Player/TurretRotation[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ce9b5109-1677-41e5-94da-c64be7a6609f
-    m_ActionName: Player/Fire[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 267effa6-ae8e-40cf-8182-280bfb38719b
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 71626ec4-92a6-4843-b271-4cd10843b24b
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 246e89eb-db0c-4260-ad0c-2679dc371ce0
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1200207b-4648-43d8-930e-0a746a7d8cef
-    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7f7856b9-dc15-45d6-aad1-7a93b8aa5f24
-    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1a43d12e-6c0c-4677-89aa-e8c398435902
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5c579538-fb32-4ca1-92ba-f6df84392348
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c7825075-3d5c-4a02-802c-31374505c649
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 02d3f798-9c77-4577-9e9c-6e5ef0aec041
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 79539f7c-4755-407a-b670-3a855d27683b
-    m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1878568590690368935
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +454,7 @@ GameObject:
   - component: {fileID: 5143236949295971638}
   - component: {fileID: 5656937696718292191}
   - component: {fileID: 706291461845842934}
-  - component: {fileID: 2263908474179503081}
+  - component: {fileID: 1952680720315853241}
   m_Layer: 0
   m_Name: Turret
   m_TagString: PlayerTank
@@ -666,7 +571,7 @@ MonoBehaviour:
   hullRotateSpeed: 5
   turretRotateSpeed: 30
   turret: {fileID: 4967934301989020693}
---- !u!114 &2263908474179503081
+--- !u!114 &1952680720315853241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -678,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 683c26587338be242a95b537b6868486, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: b15b611d0abda5d4b9c862320d168c70, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -692,8 +597,20 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 98287592-0490-479e-a77a-e00e50524430
+      m_Calls:
+      - m_Target: {fileID: 6331214123051730199}
+        m_TargetAssemblyTypeName: TankControl, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7b0461d7-8f18-4132-8739-9b17b5e53774
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
@@ -709,51 +626,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 7167b165-0f46-4284-a988-1a86f702ca83
-    m_ActionName: Player/TurretRotation[/Mouse/delta]
+    m_ActionId: 954d5575-676b-43e1-9b92-748c838cca2c
+    m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ce9b5109-1677-41e5-94da-c64be7a6609f
-    m_ActionName: Player/Fire[/Mouse/leftButton]
+    m_ActionId: cdcc3ded-3894-40e3-b0cf-7b6dbb61c198
+    m_ActionName: Player/Fire[/Mouse/leftButton,/Touchscreen/primaryTouch/tap]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 267effa6-ae8e-40cf-8182-280bfb38719b
+    m_ActionId: 1cdc65e7-054a-4ad5-a105-9de040c30235
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 71626ec4-92a6-4843-b271-4cd10843b24b
+    m_ActionId: 38619cfd-f5a7-4264-9963-42a6a95df88c
     m_ActionName: UI/Submit[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 246e89eb-db0c-4260-ad0c-2679dc371ce0
+    m_ActionId: 84086a0a-7712-4fd9-83ac-a8ebc5ba7327
     m_ActionName: UI/Cancel[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 1200207b-4648-43d8-930e-0a746a7d8cef
-    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
+    m_ActionId: 05702beb-a30c-4ea4-9ef4-e3258d26ab54
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position,/Touchscreen/touch0/position,/Touchscreen/touch1/position,/Touchscreen/touch2/position,/Touchscreen/touch3/position,/Touchscreen/touch4/position,/Touchscreen/touch5/position,/Touchscreen/touch6/position,/Touchscreen/touch7/position,/Touchscreen/touch8/position,/Touchscreen/touch9/position]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 7f7856b9-dc15-45d6-aad1-7a93b8aa5f24
-    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
+    m_ActionId: 8f96a043-7e05-466f-a9fc-25e80cac1816
+    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip,/Touchscreen/touch0/press,/Touchscreen/touch1/press,/Touchscreen/touch2/press,/Touchscreen/touch3/press,/Touchscreen/touch4/press,/Touchscreen/touch5/press,/Touchscreen/touch6/press,/Touchscreen/touch7/press,/Touchscreen/touch8/press,/Touchscreen/touch9/press]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 1a43d12e-6c0c-4677-89aa-e8c398435902
+    m_ActionId: 5825fd32-6e80-4f10-9883-4cd05fc01b22
     m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 5c579538-fb32-4ca1-92ba-f6df84392348
+    m_ActionId: 467f112f-b521-4e87-b55f-7b6a4ed169f1
     m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c7825075-3d5c-4a02-802c-31374505c649
+    m_ActionId: 3925f6fe-0cf0-4816-af66-e024d33df805
     m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 02d3f798-9c77-4577-9e9c-6e5ef0aec041
+    m_ActionId: dc629868-ae1d-43ae-9473-d0fcececaa9e
     m_ActionName: UI/TrackedDevicePosition
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 79539f7c-4755-407a-b670-3a855d27683b
+    m_ActionId: 2c5a9587-fc14-4be3-afb0-20b1a39826c2
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 

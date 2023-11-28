@@ -73,7 +73,7 @@ public class Missile : Agent
 
             }
         }
-        Debug.Log(noPlayer);
+
         //if there is no player at the front 
         if (lookPlayertimer> avoidPlayerDuration)
         {
