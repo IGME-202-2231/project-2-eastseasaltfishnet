@@ -29,9 +29,6 @@ public class TankControl : MonoBehaviour
     private Vector3 offsetOfTankAndCamera;
     private Quaternion rotationOfTankAndCamera;
 
-    private Vector3 hullForce;
-    private Vector3 hullRotationForce;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -102,7 +99,6 @@ public class TankControl : MonoBehaviour
     {
         rotateInput = context.ReadValue<Vector2>();
         rotateInput.x = ClampValue(rotateInput.x);
-        Debug.Log(rotateInput);
 
     }
     public float ClampValue(float delta)

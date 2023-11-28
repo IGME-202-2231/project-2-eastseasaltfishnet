@@ -7,6 +7,7 @@ public class EnemyMove : Agent
     public float PlayerDetection;
     public float turningSpeed;
     public float travelSpeed;
+    public float stopDistance;
 
 
     // Start is called before the first frame update
@@ -14,9 +15,6 @@ public class EnemyMove : Agent
     private Vector3 SeekingForce;
 
 
-    private Vector3 DirectionOne;
-    private Vector3 downwardDirectionOne;
-    private Vector3 downwardDirectionTwo;
 
 
     private void Start()
@@ -27,8 +25,8 @@ public class EnemyMove : Agent
 
     protected override void CalcSteeringForces()
     {
-        SeekingForce = EnemySeekPlayer(target.position, travelSpeed, turningSpeed);
-        Debug.Log(SeekingForce);
+        SeekingForce = EnemySeekPlayer(target.position, travelSpeed, turningSpeed, stopDistance);
+
         myPhysicsObject.ApplyForce(SeekingForce);
     }
 

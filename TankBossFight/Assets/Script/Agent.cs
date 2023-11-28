@@ -55,8 +55,10 @@ public abstract class Agent : MonoBehaviour
         return (steeringForce);
     }
 
-    protected Vector3 EnemySeekPlayer(Vector3 targetPos,float enemySpeed,float enemyTurnSpeed)
+    protected Vector3 EnemySeekPlayer(Vector3 targetPos,float enemySpeed,float enemyTurnSpeed,float stopDistance)
     {
+
+
         Vector3 flatTargetPos = new Vector3(targetPos.x, transform.position.y, targetPos.z);
         Vector3 targetDirection = (flatTargetPos - transform.position).normalized;
 
@@ -65,7 +67,17 @@ public abstract class Agent : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, slerpedRotation.eulerAngles.y, 0);
 
+        //if the enemy is too close to the player stop the seek but dont slow down the turn speed
+        float distance = Vector3.Distance(targetPos, transform.position);
+        if (distance < stopDistance)
+        {
+
+            return new Vector3(0, 0, 0);
+        }
+
+
         Vector3 steeringForce = transform.forward * enemySpeed;
+
 
         return steeringForce;
     }
