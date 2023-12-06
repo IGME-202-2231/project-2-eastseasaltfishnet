@@ -7,6 +7,7 @@ TagManager:
   - PlayerTank
   - Wall
   - PlayerTarget
+  - obstacle
   layers:
   - Default
   - TransparentFX

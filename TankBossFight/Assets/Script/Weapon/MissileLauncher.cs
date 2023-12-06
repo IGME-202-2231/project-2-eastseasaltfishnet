@@ -15,7 +15,7 @@ public class MissileLauncher : MonoBehaviour
     
 
 
-    private float countForLaunchPosition;
+    private int countForLaunchPosition;
 
     private float timer;
     private float shortTimer;
@@ -36,20 +36,23 @@ public class MissileLauncher : MonoBehaviour
         // launch a missile when the timere reach the time
         if (timer > reloadAllMissileTime)
         {
-            Debug.Log(timer);
             //wait for the time between each burst
             if (shortTimer > timeBetweenEachLaunch)
             {
-                Debug.Log(shortTimer);
-                Vector3 launchPosition = launchPositionSet[1].transform.position + transform.forward;
+                Vector3 launchPosition = launchPositionSet[countForLaunchPosition].transform.position + transform.forward;
 
                 Instantiate(Missile, launchPosition, transform.rotation);
 
                 remainMissileNumber--;
                 shortTimer = 0;
+                countForLaunchPosition++;
 
+                if (countForLaunchPosition >= launchPositionSet.Count)
+                {
+                    countForLaunchPosition = 0;
+                }
             }
-
+            
         }
 
         //reset the timer when no missile

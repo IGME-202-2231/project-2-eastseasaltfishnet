@@ -47,6 +47,7 @@ public class TankControl : MonoBehaviour
         TankHullMove();
         TankHullRotate();
         TurretRotation();
+        
         //CameraFallowTankMoveAndRotate();
     }
 
@@ -86,7 +87,7 @@ public class TankControl : MonoBehaviour
     /// </summary>
     public void TurretRotation()
     {
-        turret.transform.Rotate(Vector3.up, rotateInput.x * turretRotateSpeed * Time.deltaTime );
+        turret.transform.Rotate(Vector3.up, rotateInput.x * turretRotateSpeed * Time.deltaTime*5f );
 
     }
     public void OnMove(InputAction.CallbackContext context)

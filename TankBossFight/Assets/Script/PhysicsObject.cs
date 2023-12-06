@@ -44,7 +44,9 @@ public class PhysicsObject : MonoBehaviour
         }
         
         ApplyVelocity();
+       
         CheckTopSpeed();
+        
     }
 
     public void ApplyGravity()
@@ -56,6 +58,7 @@ public class PhysicsObject : MonoBehaviour
         
         acceleration += force / mass;
         
+
     }
     public void ApplyFriction(float coeff)
     {
@@ -117,10 +120,12 @@ public class PhysicsObject : MonoBehaviour
         float currentSpeedSqr = velocity.sqrMagnitude;
         float topSpeedSqr = topSpeed * topSpeed;
 
+
+        
         if (currentSpeedSqr > topSpeedSqr)
         {
-
             velocity = velocity.normalized * topSpeed;
+            
             acceleration = Vector3.zero;
         }
         // when the speed almost reach 80% of the top speed, the slow down the increase of acceleration 
@@ -129,5 +134,6 @@ public class PhysicsObject : MonoBehaviour
             float reduceFactor = (topSpeedSqr - currentSpeedSqr) / (topSpeedSqr * 0.1f);
             acceleration *= reduceFactor;
         }
+        
     }
 }
