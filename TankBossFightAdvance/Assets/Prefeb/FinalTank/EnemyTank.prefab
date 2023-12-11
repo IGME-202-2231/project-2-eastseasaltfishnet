@@ -862,4 +862,4 @@ MonoBehaviour:
   shellPrefab: {fileID: 5128567425595757933, guid: 6cb4c837789891d42a06b0421253ebb2, type: 3}
   launchPosition: {fileID: 6397724705900527766}
   reloadTime: 5
-  explosionPrefab: {fileID: 3906119240165950437, guid: c3a1352ef5a4cb244bd5dc2a6aed6e11, type: 3}
+  explosionPrefab: {fileID: 3724921455358173669}

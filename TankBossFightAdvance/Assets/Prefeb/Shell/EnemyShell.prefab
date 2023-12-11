@@ -157,6 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203182dde6afbf7479e8b7a9f3905ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 3906119240165950437, guid: 1e84556cb7022634db9866a585828b84, type: 3}
+  explosionPrefab: {fileID: 1639691313002354463, guid: 1e84556cb7022634db9866a585828b84, type: 3}
   targetTag: PlayerTank
   selfDestructTimer: 6
