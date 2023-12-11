@@ -52,6 +52,11 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
 - **Player**: Tanks cannot overlap with each other, ensuring physical separation during maneuvers.
 
 
+#### Obstacles
+- **Walls**: The tank cannot pass through walls and must avoid collisions.
+- **Player**: Tanks cannot overlap with each other, ensuring physical separation during maneuvers.
+
+
   
 ## Missile
 
