@@ -120,7 +120,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5184387884798667301, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06e09b9f0057d64b83ea0e61c2cbbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHpController: {fileID: 0}
+  enemyHpController: {fileID: 8359158214869005388}
 --- !u!1 &1585672840980166629
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dc7c46f8d291940bd28ae8693367cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 100
+  enemyHealth: 250
 --- !u!114 &3838267387833057064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7155621149423265792, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -486,7 +486,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4800732821392016998, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -568,10 +568,10 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7155621149423265792, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: -9063942822166055877, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: -4800732821392016998, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: 827107763074410852, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 7782421527923544711}
-  rotateSpeed: 0.5
+  rotateSpeed: 1
 --- !u!114 &6182188878123462892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7782421527923544711}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38d4ee415566a514ebff59414460a89c, type: 3}
   m_Name: 
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06e09b9f0057d64b83ea0e61c2cbbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHpController: {fileID: 0}
+  enemyHpController: {fileID: 8359158214869005388}
 --- !u!1 &9160970985477896251
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,14 +740,14 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 9064139848526279933, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: -7975683294525781148, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: 827107763074410852, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: -8746301463884901780, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: -7726671197958850348, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
   - {fileID: 2495442932231294560, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: 1166469204580483726, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
-  - {fileID: -3033478413764041970, guid: ef076c699c4543142823c1b395f07ba7, type: 3}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
+  - {fileID: 2100000, guid: dcb3d0d2825b07441aa30af753f1c46b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -846,7 +846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06e09b9f0057d64b83ea0e61c2cbbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHpController: {fileID: 0}
+  enemyHpController: {fileID: 8359158214869005388}
 --- !u!114 &5071017776542655430
 MonoBehaviour:
   m_ObjectHideFlags: 0
