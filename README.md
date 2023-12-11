@@ -16,10 +16,9 @@ In this simulation, you'll be driving your tank to engage in combat with an AI-c
 - **Movement**: Use `W`, `A`, `S`, `D` or the arrow keys for movement.
 - **Turning**: The tank can only pivot in place.
 - **Fire**: Left click
-- Ps make add aiming system
 
 ## Player
-The player has a health value that must be maintained while attempting to destroy the AI enemy.
+The player  must maintained hitpoint while attempting to destroy the AI enemy.
 
 
 ## AI Tank (Enemy Boss)
@@ -29,28 +28,24 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
 
 ### States
 
-#### State 1: Searching for Player
+#### State 1: Searching Player
 - **Objective**: Seek out the player's position and approach.
 - **Behaviors**:
-  - Avoid walls to prevent collision.
-  - Seek player: Move towards the player's last known position.
-  - Lock on player: Turret continuously faces the player but doesn't attack.
+  - Seek player: Turning and then moving toward the player after facing at the player
+  - Lock on player: Turret continuously faces the player. It will automatic fire when it finish reload
 - **Transitions**:
-  - To: Attacking mode when the main cannon can hit the player.
-  - To: Berserk mode when health drops below 20%.
+  - To: advoid Obstacles mode when there is a wall ahead 
 
-#### State 2: Attack Mode
-- **Objective**: Attack the player when they are not behind cover.
+#### State 2: advoid Obstacles Mode
+- **Objective**: Find the best way to go around a obstacles (There are hidden mesh in the map to represent the obstacles)
 - **Behaviors**:
-  - Rotate in place to keep the front of the tank towards the player.
+  - The enemy will look for the best way around the obstacle and will continue to track the player after it has gone around the obstacle.
 - **Transitions**:
-  - To: Searching mode if the player goes behind cover.
-  - To: Berserk mode when health drops below 20%.
+  - To: Searching Player when obstacles have been circumvented or the current position is beyond the edge of the map.
  
   #### Steering Behaviors
 1. Avoid Walls: Prevents the tank from colliding with walls.
-2. Alert Search for Player: Moves towards the player's last known location.
-3. Lock on Player: The turret continuously aims at the player but does not fire.
+2. Serach Player: A force will be applied toward the front of the tank (this fits the way a tank move)
 
 #### Obstacles
 - **Walls**: The tank cannot pass through walls and must avoid collisions.
