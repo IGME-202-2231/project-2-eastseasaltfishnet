@@ -44,7 +44,7 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
   - To: Searching Player when obstacles have been circumvented or the current position is beyond the edge of the map.
  
   #### Steering Behaviors
-1. Avoid Walls: <span style="color: red;"> *IMPORTANT* the forece return from the method AvoidObstacle in agent only helps in detemine do enemy need to turn or not. Basilcy it will turn the enemy to the best direction and apply a force toward the front. To match the way the tanks move
+<span style="color: red;">1. Avoid Walls:  *IMPORTANT* the forece return from the method AvoidObstacle in agent only helps in detemine do enemy need to turn or not. Basilcy it will turn the enemy to the best direction and apply a force toward the front. To match the way the tanks move
 2. Serach Player: A force will be applied toward the front of the tank (this fits the way a tank move)
 
 #### Obstacles
