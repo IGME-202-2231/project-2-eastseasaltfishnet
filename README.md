@@ -44,18 +44,12 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
   - To: Searching Player when obstacles have been circumvented or the current position is beyond the edge of the map.
  
   #### Steering Behaviors
-1. Avoid Walls:  ***IMPORTANT* the forece return from the method AvoidObstacle in agent only helps in detemine do enemy need to turn or not. Basilcy it will turn the enemy to the best direction and apply a force toward the front. To match the way the tanks move**：  
+1. Avoid Walls:  ****IMPORTANT* the forece return from the method AvoidObstacle in agent only helps in detemine do enemy need to turn or not. Basilcy it will turn the enemy to the best direction and apply a force toward the front. To match the way the tanks move***：  
 2. Serach Player: A force will be applied toward the front of the tank (this fits the way a tank move)
 
 #### Obstacles
 - **Walls**: The tank cannot pass through walls and must avoid collisions.
-- **Player**: Tanks cannot overlap with each other, ensuring physical separation during maneuvers.
-
-
-#### Obstacles
-- **Walls**: The tank cannot pass through walls and must avoid collisions.
-- **Player**: Tanks cannot overlap with each other, ensuring physical separation during maneuvers.
-
+- **Player**: Enemy Tanks wont overlap with player, except player ran. Unless the player tries to overlap with it. It will always keep a distace with player
 
   
 ## Missile
@@ -70,31 +64,29 @@ Missiles launched by the AI tank will track the player's position and can avoid 
 - **Behaviors**:
   - Seek target: Head straight for the player's location.
 - **Transitions**:
-  - To: Avoiding walls if an obstacle is detected.
+  - To: Avoiding walls if an obstacle is detected and players will need to be behind the obstacles.
 
 #### State 2: Avoiding Walls
-- **Objective**: Avoid walls by applying an upward force to the missile.
+- **Objective**: Avoid walls (any object with "Wall" tag) by applying an upward force to the missile.
 - **Transitions**:
   - To: Seeking player if no walls are detected after a cooldown.
 
 #### Steering Behaviors
 - Seek Target: The missile heads straight for the player's location.
-- Avoid Walls: The missile will adjust its path to avoid collisions with walls.
+- Avoid Walls: A force directly toward top will be apply and it will pull the missile up.
 
 #### Obstacles
+- **Object will wall tag**: Any object with a tag of Wall will cause the missile change into Avoiding Walls mode.
 - **Any Collider**: Colliding with any object with a collider will cause the missile to explode.
 
   
 ## Make it Your Own
   
-3D: I made all the 3D asset in the game
-Some Particle. 
-material of smoke and explosion were downloaded  
+3D: I made all the 3D asset in the game. From the factory to the missile and shells. All 3d objects have textures but can't be uploaded due to build size.
+Particle and material of smoke and explosion were downloaded  
 Link:https://github.com/Tvtig/RocketLauncher/tree/main/Assets/Tvtig/Rocket%20Launcher/Art/Textures
 
-- _List out what you added to your game to make it different for you_
-- _If you will add more agents or states make sure to list here and add it to the documention above_
-- _If you will add your own assets make sure to list it here and add it to the Sources section
+
 
 
 ## Known Issues
