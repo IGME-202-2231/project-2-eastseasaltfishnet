@@ -34,7 +34,7 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
   - Seek player: Turning and then moving toward the player after facing at the player
   - Lock on player: Turret continuously faces the player. It will automatic fire when it finish reload
 - **Transitions**:
-  - To: advoid Obstacles mode when there is a wall ahead 
+  - To: advoid Obstacles mode when there is a wall ahead (when the advoid force returned is strong enough)
 
 #### State 2: advoid Obstacles Mode
 - **Objective**: Find the best way to go around a obstacles (There are hidden mesh in the map to represent the obstacles)
@@ -44,7 +44,7 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
   - To: Searching Player when obstacles have been circumvented or the current position is beyond the edge of the map.
  
   #### Steering Behaviors
-1. Avoid Walls: Prevents the tank from colliding with walls.
+1. Avoid Walls:  *IMPORTANT* the forece return from the method AvoidObstacle in agent only helps in detemine do enemy need to turn or not. Basilcy it will turn the enemy to the best direction and apply a force toward the front. To match the way the tanks move
 2. Serach Player: A force will be applied toward the front of the tank (this fits the way a tank move)
 
 #### Obstacles
