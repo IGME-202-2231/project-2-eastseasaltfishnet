@@ -54,7 +54,13 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
 - **Walls**: The tank cannot pass through walls and must avoid collisions.
 - **Player**: Enemy Tanks wont overlap with player, except player ran. Unless the player tries to overlap with it. It will always keep a distace with player
 
-  
+#### Separation
+- **Important**: The enemy dont have separation, but since there is only one enemy I think it is reasonable. So to compensate I added separation to the other two agents,  
+the missile have a really weak separation force but the hp box have a strong one
+
+
+
+
 ## Missile
 
 ### Description
@@ -82,6 +88,9 @@ Missiles launched by the AI tank will track the player's position and can avoid 
 - **Object will wall tag**: Any object with a tag of Wall will cause the missile change into Avoiding Walls mode.
 - **Any Collider**: Colliding with any object with a collider will cause the missile to explode.
 
+#### Separation
+- The missile will have a light separation force from other missile.
+
 
 ## HpBox
 
@@ -101,10 +110,11 @@ Add 5 hp to the player when player reach the hp box on the map
 #### Obstacles
 - It wont dodge anything, it only going to colide with player.
 
+#### Separation
+- The hp box will have a stong sepration force will other hp box.
 
-## Separation
-- **Important**: The enemy dont have separation, but since there is only one enemy I think it is reasonable. So to compensate I added separation to the other two agents,  
-the missile have a really weak separation force but the hp box have a strong one 
+
+
   
 ## Make it Your Own
   
