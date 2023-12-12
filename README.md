@@ -2,6 +2,9 @@
 
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
 
+![Factory Image](https://github.com/IGME-202-2231/project-2-eastseasaltfishnet/blob/main/RenderedImage/Factory.png)
+
+![Player Image](https://github.com/IGME-202-2231/project-2-eastseasaltfishnet/blob/main/RenderedImage/Player.png)
 _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 ### Student Info
