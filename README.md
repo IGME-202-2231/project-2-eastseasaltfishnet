@@ -51,8 +51,8 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
 2. Serach Player: A force will be applied toward the front of the tank (this fits the way a tank move)
 
 #### Obstacles
-- **Walls**: The tank cannot pass through walls and must avoid collisions.
-- **Player**: Enemy Tanks wont overlap with player, except player ran. Unless the player tries to overlap with it. It will always keep a distace with player
+- **Walls**: Hidden objects that have the tag obstacles.
+
 
 #### Separation
 - **Important**: The enemy dont have separation, but since there is only one enemy I think it is reasonable. So to compensate I added separation to the other two agents,  
@@ -85,8 +85,7 @@ Missiles launched by the AI tank will track the player's position and can avoid 
 - Avoid Walls: A force directly toward top will be apply and it will pull the missile up.
 
 #### Obstacles
-- **Object will wall tag**: Any object with a tag of Wall will cause the missile change into Avoiding Walls mode.
-- **Any Collider**: Colliding with any object with a collider will cause the missile to explode.
+- **Object will wall tag**: Missile have a unqiue obstacles advoid method. I found that let the missile fly upward makes people feel more like this is a missile
 
 #### Separation
 - The missile will have a light separation force from other missile.
@@ -108,7 +107,7 @@ Add 5 hp to the player when player reach the hp box on the map
 - STAY in bound: Stay in the bound when aproching the bound of the map
 
 #### Obstacles
-- It wont dodge anything, it only going to colide with player.
+- **Walls**:Hidden objects that have the tag obstacles.
 
 #### Separation
 - The hp box will have a stong sepration force will other hp box.
