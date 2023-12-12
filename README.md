@@ -126,7 +126,8 @@ Link:https://github.com/Tvtig/RocketLauncher/tree/main/Assets/Tvtig/Rocket%20Lau
 
 ## Known Issues
 
--Player will be able to move out the map 
--The HP box will stuck a bit when it is trying to avoid the obstacle 
+-Player will be able to move out the map   
+-The HP box will stuck a bit when it is trying to avoid the obstacle   
+-The Hp of enemy is not showing correctly. I have to pull it into the scene to make the Ui image function
 
 
