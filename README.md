@@ -51,7 +51,7 @@ This is the boss an AI tank with stronger firepower, capable of shooting main ca
 2. Search Player: A force will be applied toward the front of the tank (this fits the way a tank moves)
 
 #### Obstacles
-- **Walls**: Hidden objects that have the tag obstacles.
+- **Walls**: Hidden objects that have the tag obstacles. The way of advoid obstacles mehtod work on the tank is the method will turn the body of the tank toward the best direction to get around the obstacles. but the force will only apply foward on the hull of tha tnak
 
 
 #### Separation
