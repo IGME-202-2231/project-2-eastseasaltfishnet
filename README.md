@@ -18,7 +18,7 @@ In this simulation, you'll be driving your tank to engage in combat with an AI-c
 ## Controls
 - **Movement**: Use `W`, `A`, `S`, `D` or the arrow keys for movement.
 - **Turning**: The tank can only pivot in place.
-- **Fire**: Left click
+- **Turret Rotation & Fire**: move you mouse and keep aim at the enemy, you tank will fire automatically
 
 ## Player
 The player  must maintained hitpoint while attempting to destroy the AI enemy.
