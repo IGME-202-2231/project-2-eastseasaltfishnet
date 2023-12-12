@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f388d2a912770ad4b90f1acd8bfa0f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHpBar: {fileID: 0}
+  EnemyHpBar: {fileID: 750554781724795792, guid: 2175451b106993045a957194ea54508a, type: 3}
   EnemyHpController: {fileID: 8359158214869005388}
 --- !u!1 &2086618862277208280
 GameObject:
@@ -831,6 +831,7 @@ MonoBehaviour:
   turningSpeed: 0.5
   hullPower: 500
   stopDistance: 20
+  alertDistance: 1
   maxAcceleration: 10
   obstacleAvoidanceDistance: 30
   advoidWeight: 1

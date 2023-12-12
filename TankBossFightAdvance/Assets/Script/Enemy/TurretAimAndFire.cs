@@ -11,11 +11,6 @@ public class TurretAimAndFire : MonoBehaviour
     private Transform target;
 
 
-
-    private Vector3 DirectionOne;
-    private Vector3 downwardDirectionOne;
-    private Vector3 downwardDirectionTwo;
-
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("PlayerTarget").transform;

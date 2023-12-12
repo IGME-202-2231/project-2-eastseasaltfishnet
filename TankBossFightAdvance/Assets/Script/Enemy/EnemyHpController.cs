@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyHpController : MonoBehaviour
 {
-    // Start is called before the first frame update
     public int enemyHealth;
 
     public void TakeDamage(int damage)

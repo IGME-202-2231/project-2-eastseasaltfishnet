@@ -9,6 +9,8 @@ public class Missile : Agent
     public float avoidWallRayDetectionDistance;
     public float turningSpeed;
 
+    public float advoidDistance;
+    public float advoidForce;
 
     // Start is called before the first frame update
     private Transform target;
@@ -105,6 +107,8 @@ public class Missile : Agent
             }
         }
 
+        SeekingForce += MissileSeparation(advoidDistance,advoidForce);
+        
         myPhysicsObject.ApplyForce(SeekingForce);
     }
 

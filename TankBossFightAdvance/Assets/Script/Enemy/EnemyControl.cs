@@ -15,21 +15,16 @@ public class EnemyMove : Agent
 
     
 
-    [SerializeField]
-    float advoidWeight = 1f;
-
     // Start is called before the first frame update
     private List<GameObject> walls;
     private Transform target;
     private Vector3 totalForce;
-    private Vector3 tempForce;
     private Vector3 boundaryMin;
     private Vector3 boundaryMax;
 
 
     private void Start()
     {
-        tempForce = Vector3.zero;
         target = GameObject.FindGameObjectWithTag("PlayerTarget").transform;
 
         GameObject[] wallsArray = GameObject.FindGameObjectsWithTag("obstacle");
@@ -45,7 +40,7 @@ public class EnemyMove : Agent
     protected override void CalcSteeringForces()
     {
         totalForce = Vector3.zero;
-        Vector3 avoidObstacleForce = AvoidObstacle(hullPower,turningSpeed, obstacleAvoidanceDistance, walls, target.position);
+        Vector3 avoidObstacleForce = AvoidObstacleForTank(hullPower,turningSpeed, obstacleAvoidanceDistance, walls, target.position);
 
         //if the enemy is not in bound seek player 
         if (!IsWithinBoundary(transform.position))
@@ -55,6 +50,7 @@ public class EnemyMove : Agent
         //if player is in the bound then do the obsticle advoid 
         else
         {
+
             if (avoidObstacleForce.magnitude < 3.5f && turnTime! < 0)
             {
                 totalForce += EnemySeekPlayer(target.position, hullPower, turningSpeed, stopDistance, maxAcceleration);

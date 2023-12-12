@@ -29,10 +29,6 @@ public class EnemyhellColision : MonoBehaviour
                         playerTakeDamage.ReceiveDamage(20);
                         
                     }
-                    else
-                    {
-                        Debug.LogError("PlayerTakeDamagePart component not found on the hit object.");
-                    }
 
                 }
             }

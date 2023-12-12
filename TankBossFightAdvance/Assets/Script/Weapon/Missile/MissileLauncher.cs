@@ -7,16 +7,11 @@ public class MissileLauncher : MonoBehaviour
 {
 
     public GameObject Missile;
-
     public List<GameObject> launchPositionSet;
     public float currentMissileNumber = 2f;
-
     public float reloadAllMissileTime;
-    
-
 
     private int countForLaunchPosition;
-
     private float timer;
     private float shortTimer;
     private float remainMissileNumber;
@@ -39,9 +34,11 @@ public class MissileLauncher : MonoBehaviour
             //wait for the time between each burst
             if (shortTimer > timeBetweenEachLaunch)
             {
+
                 Vector3 launchPosition = launchPositionSet[countForLaunchPosition].transform.position + transform.forward;
 
-                Instantiate(Missile, launchPosition, transform.rotation);
+                
+                AgentManger.Instance.SpawnMissile(Missile, launchPosition, transform.rotation);
 
                 remainMissileNumber--;
                 shortTimer = 0;

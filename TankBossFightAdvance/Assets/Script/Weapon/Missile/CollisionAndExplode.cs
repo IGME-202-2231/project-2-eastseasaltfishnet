@@ -55,8 +55,14 @@ public class CollisionAndExplode : MonoBehaviour
     {
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         hasExploded = true;
-        //call the explsoion
         Destroy(explosion, 2.0f);
+
+        // remove from the list
+        if (AgentManger.Instance != null)
+        {
+            AgentManger.Instance.allMissiles.Remove(this.gameObject);
+        }
+
         Destroy(gameObject);
     }
 }

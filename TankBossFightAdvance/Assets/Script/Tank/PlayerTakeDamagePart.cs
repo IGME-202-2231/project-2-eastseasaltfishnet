@@ -18,4 +18,8 @@ public class PlayerTakeDamagePart : MonoBehaviour
 
 
     }
+    public void Health(int increaseHp)
+    {
+        playerHpController.Health(increaseHp);
+    }
 }

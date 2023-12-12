@@ -104,6 +104,8 @@ MonoBehaviour:
   maxForce: 8000
   avoidWallRayDetectionDistance: 100
   turningSpeed: 80
+  advoidDistance: 10
+  advoidForce: 2
 --- !u!114 &7769808009286112135
 MonoBehaviour:
   m_ObjectHideFlags: 0
