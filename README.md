@@ -117,8 +117,9 @@ Add 5 hp to the player when the player reaches the hp box on the map
   
 ## Make it Your Own
   
-3D: I made all the 3D asset in the game. From the factory to the missiles and shells. All 3d objects have textures but can't be uploaded due to build size.
-Particles and material of smoke and explosion were downloaded  
+3D: I made all the 3D asset in the game. From the factory to the missiles and shells. All 3d objects have textures but can't be uploaded due to build size.  
+Animation of the drone  
+Particles and material of smoke and explosion were downloaded   
 Link:https://github.com/Tvtig/RocketLauncher/tree/main/Assets/Tvtig/Rocket%20Launcher/Art/Textures
 
 
