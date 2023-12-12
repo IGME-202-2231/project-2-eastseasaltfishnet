@@ -56,6 +56,7 @@ public abstract class Agent : MonoBehaviour
 
         return (steeringForce);
     }
+
     protected Vector3 MissileSeparation(float separationRadius, float separationStrength)
     {
         Vector3 separationForce = Vector3.zero;
@@ -83,7 +84,7 @@ public abstract class Agent : MonoBehaviour
         }
 
 
-        //Debug.Log  (separationForce);
+        Debug.Log  ("The sepreation force of missile" + separationForce);
 
 
 
@@ -172,6 +173,13 @@ public abstract class Agent : MonoBehaviour
 
         return force;
     }
+    /// <summary>
+    /// for the hp box to get around the obstacle
+    /// </summary>
+    /// <param name="avoidDistance"></param>
+    /// <param name="obstacles"></param>
+    /// <param name="weight"></param>
+    /// <returns></returns>
     protected Vector3 HpBoxAvoidObstacle(float avoidDistance, List<GameObject> obstacles,float weight)
     {
         Vector3 avoidanceForce = Vector3.zero;

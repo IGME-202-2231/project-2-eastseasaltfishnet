@@ -831,10 +831,8 @@ MonoBehaviour:
   turningSpeed: 0.5
   hullPower: 500
   stopDistance: 20
-  alertDistance: 1
   maxAcceleration: 10
   obstacleAvoidanceDistance: 30
-  advoidWeight: 1
 --- !u!114 &1524901415005647740
 MonoBehaviour:
   m_ObjectHideFlags: 0

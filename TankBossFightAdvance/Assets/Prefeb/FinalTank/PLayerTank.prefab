@@ -763,12 +763,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4894572402174621630}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a79848f05da89142aef0b7017610c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHpBar: {fileID: 0}
+  PlayerHpBar: {fileID: 7161242311997505392, guid: 634801cf04e10bf4082268fa14a09bf0, type: 3}
   playerHpController: {fileID: 9062714279802032172}
 --- !u!1 &5169577130873049701
 GameObject:

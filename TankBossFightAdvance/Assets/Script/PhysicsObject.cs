@@ -35,7 +35,7 @@ public class PhysicsObject : MonoBehaviour
 
         if (useFriction)
         {
-            // 修改这里，检查速度是否不为零
+            
             if (velocity.magnitude > 0.01f)
             {
                 ApplyFriction(CoefficientOfFriction);
